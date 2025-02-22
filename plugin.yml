@@ -1,0 +1,7 @@
+name: Homes
+main: fr.aphaistos.homes.HomesPlugin
+version: 1.0
+api-version: 1.21
+commands:
+  home:
+    description: Home Plugin main command
