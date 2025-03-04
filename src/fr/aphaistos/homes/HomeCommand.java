@@ -41,9 +41,9 @@ public class HomeCommand implements CommandExecutor {
 			return true;
 		} else if (args[0].equals("set")) {
 			Location player_loc = player.getLocation();
-			int x = player_loc.getBlockX();
-			int y = player_loc.getBlockY();
-			int z = player_loc.getBlockZ();
+			double x = player_loc.getX();
+			double y = player_loc.getY();
+			double z = player_loc.getZ();
 			if (args.length == 2) {
 				String home_name = args[1];
 				player.sendMessage("§6Set home §c" + home_name + " §6(x=§a" + x + "§6, y=§a" + y + "§6, z=§a" + z +"§6).");
@@ -51,7 +51,7 @@ public class HomeCommand implements CommandExecutor {
 				return false;
 			}
 			
-			player.sendMessage("§6Set home §cmain §6(x=§a" + player_loc.getBlockX() + "§6, y=§a" + player_loc.getBlockY() + "§6, z=§a" + player_loc.getBlockZ() +"§6).");
+			player.sendMessage("§6Set home §cmain §6(x=§a" + x + "§6, y=§a" + y + "§6, z=§a" + z +"§6).");
 			this.handler.setHome(uuid, new Home("main", new HomePos(x, y, z)));
 		} else if (args[0].equals("show")) {
 			ArrayList<Home> homes = handler.getHomes(uuid);

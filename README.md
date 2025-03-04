@@ -1,5 +1,6 @@
 # Presentation
 Homes is a simple spigot plugin that implements the "/home" command.
+This personal project is a way to reintroduced me to the Java programming language.
 
 # Use
 Download the last plugin release and put it into the "plugins" folder of a spigot server (make sure the plugin's mc version matches the server's mc verison).

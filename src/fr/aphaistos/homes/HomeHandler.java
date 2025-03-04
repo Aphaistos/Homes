@@ -43,7 +43,24 @@ public class HomeHandler {
 		}
 	}
 	
+	public void addOwner(UUID uuid) {
+		addOwner(uuid.toString());
+	}
+	public void addOwner(String uuid) {
+		addOwner(new HomeOwner(uuid, new ArrayList<Home>()));
+	}
+	public void addOwner(HomeOwner owner) {
+		if (this.getOwnerByUUID(owner.getUuid()) != null)
+			return;
+		
+		this.homes_data.add(owner);
+		writeData();
+	}
+	
 	public void setHome(UUID uuid, Home home) {
+		setHome(uuid.toString(), home);
+	}
+	public void setHome(String uuid, Home home) {
 		HomeOwner owner = this.getOwnerByUUID(uuid);
 		ArrayList<Home> homes;
 		if (owner == null) {
@@ -64,6 +81,9 @@ public class HomeHandler {
 	}
 	
 	public Home getHome(UUID uuid, String name) {
+		return getHome(uuid.toString(), name);
+	}
+	public Home getHome(String uuid, String name) {
 		HomeOwner owner = this.getOwnerByUUID(uuid);
 		if (owner != null) {
 			ArrayList<Home> homes = owner.getHomes();
@@ -75,6 +95,9 @@ public class HomeHandler {
 		return null;
 	}
 	public ArrayList<Home> getHomes(UUID uuid) {
+		return getHomes(uuid.toString());
+	}
+	public ArrayList<Home> getHomes(String uuid) {
 		HomeOwner owner = this.getOwnerByUUID(uuid);
 		ArrayList<Home> homes = new ArrayList<Home>();
 		if (owner != null) {
@@ -93,7 +116,6 @@ public class HomeHandler {
 	public String getFilepath() {
 		return this.file.getAbsolutePath();
 	}
-
 	
 	private void createFile() {
 		if (!this.file.exists()) {
@@ -104,21 +126,27 @@ public class HomeHandler {
 			}
 		}
 	}
-	private HomeOwner getOwnerByUUID(UUID uuid) {
+	public HomeOwner getOwnerByUUID(UUID uuid) {
+		return getOwnerByUUID(uuid.toString());
+	}
+	public HomeOwner getOwnerByUUID(String uuid) {
 		for (HomeOwner owner : this.homes_data)
-			if (owner.getUuid().equalsIgnoreCase(uuid.toString()))
+			if (owner.getUuid().equals(uuid))
 				return owner;
 		return null;
 	}
-	private int getOwnerListId(UUID uuid) {
+	public int getOwnerListId(UUID uuid) {
+		return getOwnerListId(uuid.toString());
+	}
+	public int getOwnerListId(String uuid) {
 		for(int i = 0; i < this.homes_data.size(); i++)
-			if (this.homes_data.get(i).getUuid().equalsIgnoreCase(uuid.toString()))
+			if (this.homes_data.get(i).getUuid().equals(uuid))
 				return i;
 		return -1;
 	}
-	private static int getHomeIdByName(ArrayList<Home> homes, String name) { // Can be used as a 'contains fonction' too
+	public static int getHomeIdByName(ArrayList<Home> homes, String name) { // Can be used as a 'contains fonction' too
 		for (int i = 0; i < homes.size(); i++)
-			if (homes.get(i).getName().equalsIgnoreCase(name))
+			if (homes.get(i).getName().equals(name))
 				return i;
 		
 		return -1;
