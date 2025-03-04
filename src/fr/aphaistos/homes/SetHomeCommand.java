@@ -36,11 +36,14 @@ public class SetHomeCommand implements CommandExecutor {
 			this.handler.setHome(uuid, new Home("main", new HomePos(x, y, z)));
 			return false;
 		} else if (args.length == 1) {
-			String home_name = args[1];
+			String home_name = args[0];
 			player.sendMessage("§6Set home §c" + home_name + " §6(x=§a" + x + "§6, y=§a" + y + "§6, z=§a" + z +"§6).");
 			this.handler.setHome(uuid, new Home(home_name, new HomePos(x, y, z)));
 			return false;
 		}
+		
+		player.sendMessage("§4Incorrect use of sethome.");
+		player.sendMessage("§4The command is: §c/sethome <home_name | §loptional§r§c>");
 		return true;
 	}
 

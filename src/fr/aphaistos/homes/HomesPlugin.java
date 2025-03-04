@@ -10,6 +10,7 @@ public class HomesPlugin extends JavaPlugin {
 	public void onEnable() {
 		handler.readData();
 		getCommand("home").setExecutor(new HomeCommand(handler));
+		getCommand("sethome").setExecutor(new SetHomeCommand(handler));
 		
 		getServer().getPluginManager().registerEvents(new HomeEvents(this.handler), this);
 	}

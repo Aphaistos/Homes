@@ -6,3 +6,5 @@ api-version: 1.21
 commands:
   home:
     description: Home Plugin main command
+  sethome:
+    description: Set a player's home location

@@ -36,8 +36,8 @@ public class HomeCommand implements CommandExecutor {
 				player.teleport(home_loc);
 				return false;
 			}
-			player.sendMessage("§6You didn't set your main home.");
-			player.sendMessage("§6Use the command: /home set main");
+			player.sendMessage("§4You didn't set your main home.");
+			player.sendMessage("§4Use the command: §c/home set main");
 			return true;
 		} else if (args[0].equals("set")) {
 			Location player_loc = player.getLocation();
@@ -64,8 +64,8 @@ public class HomeCommand implements CommandExecutor {
 			String home_name = args[0];
 			Home home = handler.getHome(uuid, home_name);
 			if (home == null) {
-				player.sendMessage("§6Home `" + home_name + "` isn't set.");
-				player.sendMessage("§6Use the command: /home set " + home_name);
+				player.sendMessage("§4Home `§c" + home_name + "§4` isn't set.");
+				player.sendMessage("§4Use the command: §c/home set " + home_name);
 				return true;
 			}
 			HomePos home_pos = home.getPos();
